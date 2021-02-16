@@ -6,6 +6,26 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>LoongEgg</Authors>
     <Description>Mvvm framework with BindableObject, DelegateCommand and IoC Container</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/loongEgg/Core.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/loongEgg/Core.git</RepositoryUrl>
+    <PackageReleaseNotes>first release, experimental</PackageReleaseNotes>
+    <PackageTags>Mvvm IoC</PackageTags>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+    <DocumentationFile>E:\project\LoongEgg.Core\LoongEgg.Core\LoongEgg.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <DocumentationFile>E:\project\LoongEgg.Core\LoongEgg.Core\LoongEgg.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
