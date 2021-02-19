@@ -9,8 +9,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/loongEgg/Core.git</PackageProjectUrl>
     <RepositoryUrl>https://github.com/loongEgg/Core.git</RepositoryUrl>
-    <PackageReleaseNotes>first release, experimental</PackageReleaseNotes>
+    <PackageReleaseNotes>Add IoC Container</PackageReleaseNotes>
     <PackageTags>Mvvm IoC</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
