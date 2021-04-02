@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace LoongEgg.Core
 {
@@ -12,9 +14,9 @@ namespace LoongEgg.Core
         /// <summary>
         /// 线程安全的<seealso cref="Dictionary{TKey, TValue}"/>
         /// </summary>
-        public ConcurrentDictionary<Type, object> Instances => _Instances;
+        public ConcurrentDictionary<string, object> Instances => _Instances;
 
-        private readonly ConcurrentDictionary<Type, object> _Instances = new ConcurrentDictionary<Type, object>();
+        private readonly ConcurrentDictionary<string, object> _Instances = new ConcurrentDictionary<string, object>();
 
         internal Container() { }
 
@@ -29,10 +31,10 @@ namespace LoongEgg.Core
 
             lock (this)
             {
-                if (_Instances.ContainsKey(type))
-                    _Instances[type] = instance;
+                if (_Instances.ContainsKey(type.FullName))
+                    _Instances[type.FullName] = instance;
                 else
-                    _Instances.TryAdd(type, instance);
+                    _Instances.TryAdd(type.FullName, instance);
             }
         }
 
@@ -44,10 +46,27 @@ namespace LoongEgg.Core
         public T Get<T>()
         {
             var t = typeof(T);
-            if (_Instances.ContainsKey(t))
-                return (T)_Instances[t];
+            if (_Instances.ContainsKey(t.FullName))
+                return (T)_Instances[t.FullName];
 
-            else throw new ArgumentOutOfRangeException();
+            else throw new ArgumentOutOfRangeException($"未创建类型 {t.FullName} 的实例");
+        }
+
+        public T Get<T>(string assemblyName, string typeName)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assemblyName);
+            if (File.Exists(path))
+            {
+                Assembly assembly = Assembly.LoadFile(path);
+                Type type = assembly.GetType(typeName, true, true);
+                if (_Instances.ContainsKey(type.FullName))
+                    return (T)_Instances[type.FullName];
+                else throw new ArgumentOutOfRangeException($"未创建类型 {type.FullName} 的实例");
+            }
+            else
+            {
+                throw new FileNotFoundException($"{assemblyName}");
+            }
         }
     }
 }
