@@ -76,6 +76,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="E:LoongEgg.Core.DelegateCommand`1.CanExecuteChanged">
+            <summary>
+            可执行改变事件的处理器
+            </summary>
+        </member>
         <member name="F:LoongEgg.Core.DelegateCommand`1._ExcuteMethod">
             <summary>
             负责执行命令的方法
@@ -101,7 +106,21 @@
             <summary>
             Instance of <see cref="T:LoongEgg.Core.DelegateCommand`1"/>
             </summary>
-            <param name="executeMethod"><see cref="F:LoongEgg.Core.DelegateCommand`1._PredicateMethod"/></param>
+            <param name="executeMethod">负责执行的方法</param>
+            <param name="predicateMethod">负责检测是否可以执行的方法</param>
+        </member>
+        <member name="M:LoongEgg.Core.DelegateCommand`1.CanExecute(System.Object)">
+            <summary>
+            可执行判断
+            </summary>
+            <param name="parameter">参数</param>
+            <returns>[true]: 可执行; [false]: 不可执行</returns>
+        </member>
+        <member name="M:LoongEgg.Core.DelegateCommand`1.Execute(System.Object)">
+            <summary>
+            执行操作
+            </summary>
+            <param name="parameter">参数</param>
         </member>
         <member name="M:LoongEgg.Core.DelegateCommand`1.RaiseCanExecuteChanged">
             <summary>
@@ -117,6 +136,41 @@
             <summary>
             实例容器
             </summary>
+        </member>
+        <member name="T:LoongEgg.Core.IRaiseCanExecuteChanged">
+            <summary>
+            包含引发可执行改变事件的接口
+            </summary>
+        </member>
+        <member name="M:LoongEgg.Core.IRaiseCanExecuteChanged.RaiseCanExecuteChanged">
+            <summary>
+            引发可执行改变事件
+            </summary>
+        </member>
+        <member name="T:LoongEgg.Core.RelayCommand">
+            <summary>
+            不需要参数的Relay command
+            </summary>
+        </member>
+        <member name="M:LoongEgg.Core.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            instance of <see cref="T:LoongEgg.Core.RelayCommand"/>
+            </summary>
+            <param name="executeMethod">执行命令的方法</param>
+            <param name="predicateMethod">判断命令可以执行的方法</param>
+        </member>
+        <member name="T:LoongEgg.Core.RelayCommand`1">
+            <summary>
+            会自动引发可执行改变事件的命令
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LoongEgg.Core.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            instance of <see cref="T:System.ReadOnlyMemory`1"/>
+            </summary>
+            <param name="executeMethod">执行命令的方法</param>
+            <param name="predicateMethod">判断命令可以执行的方法</param>
         </member>
     </members>
 </doc>

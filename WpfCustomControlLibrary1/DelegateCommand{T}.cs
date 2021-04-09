@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace LoongEgg.Core
+namespace WpfCustomControlLibrary1
 {
     /// <summary>
     /// 需要手动引发<see cref="CanExecuteChanged"/>的命令
