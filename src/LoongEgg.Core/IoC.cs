@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WpfCustomControlLibrary1
+﻿namespace LoongEgg.Core
 {
     /// <summary>
     /// 依赖注入工具类

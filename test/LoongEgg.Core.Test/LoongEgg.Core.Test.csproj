@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoongEgg.Core\LoongEgg.Core.csproj" />
+    <ProjectReference Include="..\..\src\LoongEgg.Core\LoongEgg.Core.csproj" />
   </ItemGroup>
 
 </Project>

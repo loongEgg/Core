@@ -1,22 +1,24 @@
-ï»¿using System.Collections.Generic;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace LoongEgg.Core
 {
     /// <summary>
-    /// å¯ç»‘å®šå¯¹è±¡çš„åŸºç±»
+    /// ¿É°ó¶¨¶ÔÏóµÄ»ùÀà
     /// </summary>
     public abstract class BindableObject : INotifyPropertyChanged
     {
         /// <summary>
-        /// å°è¯•è®¾ç½®"æ–°"çš„æ•°å€¼, å¦‚æœè·Ÿæ—§çš„å€¼ä¸ä¸€æ ·ä¼šè°ƒç”¨<see cref="RaisePropertyChanged(string)"/>
+        /// ³¢ÊÔÉèÖÃ"ĞÂ"µÄÊıÖµ, Èç¹û¸ú¾ÉµÄÖµ²»Ò»Ñù»áµ÷ÓÃ<see cref="RaisePropertyChanged(string)"/>
         /// </summary>
-        /// <typeparam name="T">å±æ€§çš„ç±»å‹(è‡ªåŠ¨åˆ¤æ–­)</typeparam>
-        /// <param name="target">å¾…è®¾ç½®çš„å±æ€§</param>
-        /// <param name="value">å¾…èµ‹äºˆçš„"æ–°"å€¼</param>
-        /// <param name="propertyName">å±æ€§åç§°(è‡ªåŠ¨è·å–)</param>
-        /// <returns>true: å·²è®¾ç½®ä¸ºæ–°å€¼; false: æœªè®¾ç½®.</returns>
+        /// <typeparam name="T">ÊôĞÔµÄÀàĞÍ(×Ô¶¯ÅĞ¶Ï)</typeparam>
+        /// <param name="target">´ıÉèÖÃµÄÊôĞÔ</param>
+        /// <param name="value">´ı¸³ÓèµÄ"ĞÂ"Öµ</param>
+        /// <param name="propertyName">ÊôĞÔÃû³Æ(×Ô¶¯»ñÈ¡)</param>
+        /// <returns>true: ÒÑÉèÖÃÎªĞÂÖµ; false: Î´ÉèÖÃ.</returns>
         protected bool SetProperty<T>(
             ref T target, T value,
             [CallerMemberName] string propertyName = null)
@@ -30,15 +32,15 @@ namespace LoongEgg.Core
         }
 
         /// <summary>
-        /// å¼•å‘<see cref="PropertyChanged"/>
+        /// Òı·¢<see cref="PropertyChanged"/>
         /// </summary>
-        /// <param name="propertyName">è¦å¼•å‘å±æ€§æ”¹å˜äº‹ä»¶çš„å±æ€§çš„åç§°</param>
+        /// <param name="propertyName">ÒªÒı·¢ÊôĞÔ¸Ä±äÊÂ¼şµÄÊôĞÔµÄÃû³Æ</param>
         public void RaisePropertyChanged(string propertyName)
           => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         /// <summary>
-        /// å±æ€§æ”¹å˜äº‹ä»¶, å¤–éƒ¨æƒ³çŸ¥é“å±æ€§æ”¹å˜äº†, å°±ä½¿ç”¨"+="æ–°å¢ä¸€ä¸ªè§‚å¯Ÿç‚¹, 
-        /// å¹¶æ ¹æ®<see cref="PropertyChangedEventArgs.PropertyName"/>åˆ¤æ–­æ˜¯å“ªä¸ªå±æ€§
+        /// ÊôĞÔ¸Ä±äÊÂ¼ş, Íâ²¿ÏëÖªµÀÊôĞÔ¸Ä±äÁË, ¾ÍÊ¹ÓÃ"+="ĞÂÔöÊÂ¼ş´¦ÀíÆ÷ 
+        /// ²¢¸ù¾İ<see cref="PropertyChangedEventArgs.PropertyName"/>ÅĞ¶ÏÊÇÄÄ¸öÊôĞÔ
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Windows.Input;
 
-namespace WpfCustomControlLibrary1
+namespace LoongEgg.Core
 {
     /// <summary>
     /// 不需要外部参数输入的<see cref="DelegateCommand{T}"/>

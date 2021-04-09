@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0-alp</Version>
+    <Copyright />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>A tiny framework for building loosely coupled, and testable WPF application.Including bindable object for MVVM, DelegateCommand, RelayCommand, and implement of dependency injection(IoC Container).
+一个简单的MVVM框架, 提供了基本的绑定基类, 手动引发/自动引发命令以及依赖注入的实现, 在代码仓库中有Demo.
+Enjoy it! 0.0</Description>
+    <PackageTags>MVVM IoC RelayCommand DelegateCommand</PackageTags>
+    <PackageReleaseNotes>preview release of version 2.0</PackageReleaseNotes>
+    <RepositoryUrl>https://gitee.com/JetLab/core.git</RepositoryUrl>
+    <PackageProjectUrl>https://gitee.com/JetLab/core</PackageProjectUrl>
+    <Authors>LoongEgg</Authors>
+    <Company />
+  </PropertyGroup>
+
+</Project>

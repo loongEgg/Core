@@ -90,20 +90,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoongEgg.Core\LoongEgg.Core.csproj">
-      <Project>{95a2bb07-a497-4635-9abc-354945940c8b}</Project>
-      <Name>LoongEgg.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfCustomControlLibrary1\WpfCustomControlLibrary1.csproj">
-      <Project>{a35a0427-b4b2-4c55-9f06-b8afcc80fbad}</Project>
-      <Name>WpfCustomControlLibrary1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LoongEgg.Core\LoongEgg.Core.csproj">
+      <Project>{026aabf2-0489-4bf9-84e2-a697567897c0}</Project>
+      <Name>LoongEgg.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

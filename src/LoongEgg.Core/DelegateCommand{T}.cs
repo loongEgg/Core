@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WpfCustomControlLibrary1
+namespace LoongEgg.Core
 {
     /// <summary>
     /// 需要手动引发<see cref="CanExecuteChanged"/>的命令
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">命令参数类型</typeparam>
     public class DelegateCommand<T> : ICommand
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace WpfCustomControlLibrary1
         /// <param name="predicateMethod">负责检测是否可以执行的方法</param>
         public DelegateCommand(Action<T> executeMethod, Predicate<T> predicateMethod)
         {
-            if (executeMethod == null) 
+            if (executeMethod == null)
                 throw new ArgumentNullException();
             _ExcuteMethod = executeMethod;
             _PredicateMethod = predicateMethod;
@@ -85,7 +85,7 @@ namespace WpfCustomControlLibrary1
         }
 
         /// <summary>
-        /// 手动引发<see cref="CanExecuteChanged"/>
+        /// 引发<see cref="CanExecuteChanged"/>
         /// </summary>
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }

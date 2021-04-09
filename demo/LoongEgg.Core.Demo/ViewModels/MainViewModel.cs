@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Timers;
-using WpfCustomControlLibrary1;
 
 namespace LoongEgg.Core.Demo
 {
     public class MainViewModel : BindableObject
     {
-
         public uint PhoneNum
         {
             get { return _PhoneNum; }
@@ -17,14 +15,16 @@ namespace LoongEgg.Core.Demo
 
         public bool PhoneNumValid => PhoneNum.ToString().Length > 2;
 
-        public WpfCustomControlLibrary1.DelegateCommand DelegateCallCommand { get; }
-        public WpfCustomControlLibrary1.RelayCommand RelayCallCommand { get; }
+        public DelegateCommand DelegateCallCommand { get; }
+        public RelayCommand RelayCallCommand { get; }
 
         public MainViewModel()
         {
-            DelegateCallCommand = new WpfCustomControlLibrary1.DelegateCommand(DelegateCall, () => PhoneNumValid && IsDelegateCalling == false);
-            RelayCallCommand = new WpfCustomControlLibrary1.RelayCommand(RelayCall, () => PhoneNumValid && IsRelayCalling == false);
+            DelegateCallCommand = new DelegateCommand(DelegateCall, CanDelegateCall);
+            RelayCallCommand = new RelayCommand(async () => { await RelayCallAsync(); }, () => PhoneNumValid && IsRelayCalling == false); ;
         }
+
+        private bool CanDelegateCall() => PhoneNumValid && IsDelegateCalling == false;
 
         public bool IsDelegateCalling
         {
@@ -50,17 +50,11 @@ namespace LoongEgg.Core.Demo
             };
             timer.Elapsed += (s, e) => IsDelegateCalling = false;
         }
-        private void RelayCall()
+        private async Task RelayCallAsync()
         {
             IsRelayCalling = true;
-            Task.Run(async () =>
-            {
-                await Task.Delay(5000);
-                IsRelayCalling = false; 
-                RelayCallCommand
-            });
+            await Task.Delay(5000);
+            IsRelayCalling = false;
         }
-
-
     }
 }

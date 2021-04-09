@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+using System.Windows.Input;
 
-namespace WpfCustomControlLibrary1
+namespace LoongEgg.Core
 {
     /// <summary>
     /// Container for object instances
@@ -17,8 +16,6 @@ namespace WpfCustomControlLibrary1
         public ConcurrentDictionary<Type, object> Instances => _Instances;
 
         private readonly ConcurrentDictionary<Type, object> _Instances = new ConcurrentDictionary<Type, object>();
-
-        internal Container() { }
 
         /// <summary>
         /// Add or update the specify instance
@@ -42,21 +39,28 @@ namespace WpfCustomControlLibrary1
         /// 获取指定类型的实例
         /// </summary>
         /// <typeparam name="T">type of instance to get</typeparam>
-        /// <returns>Instance of specify type</returns>
+        /// <returns>Instance of request type</returns>
         public T Get<T>()
         {
             var t = typeof(T);
+
             if (_Instances.ContainsKey(t))
                 return (T)_Instances[t];
-
-            else throw new ArgumentOutOfRangeException($"未创建类型 {t.FullName} 的实例");
+            else 
+                throw new ArgumentOutOfRangeException($"未创建类型<{t.FullName}>的实例");
         }
 
+        /// <summary>
+        /// 获取指定类型的实例
+        /// </summary>
+        /// <param name="type">type of instance to get</param>
+        /// <returns>Instance of request type</returns>
         public object Get(Type type)
-        {  
+        {
             if (_Instances.ContainsKey(type))
                 return _Instances[type];
-            else throw new ArgumentOutOfRangeException($"未创建类型 {type.FullName} 的实例"); 
+            else 
+                throw new ArgumentOutOfRangeException($"未创建类型<{type.FullName}>的实例");
         }
     }
 }

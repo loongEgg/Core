@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WpfCustomControlLibrary1
+namespace LoongEgg.Core
 {
     /// <summary>
     /// 不需要外部参数输入的<see cref="RelayCommand{T}"/>
